@@ -74,7 +74,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
 	int j, flg;
 
 	instruction_t stack_funcs[] = {
-		{"push", push_to stack},
+		{"push", push_to_stack},
 		{"pall", pall_stack},
 		{"pint", pint_stack},
 		{"pop", pop_stack},
