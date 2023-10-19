@@ -1,4 +1,5 @@
 #include "monty.h"
+
 /**
  * push_to_stack - push int to a stack
  * @stack: linked lists for monty stack
