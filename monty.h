@@ -16,9 +16,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -31,8 +31,8 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 extern stack_t *hd;
@@ -43,10 +43,21 @@ void opn_fl(char *fl_nam);
 void rd_fil(FILE *fl_des);
 int line_parsing(char *buff, int line_num, int formt);
 void fnd_fun(char *opcd, char *val, int line_num, int formt);
-void fun_calling(opFunc function, char *opcd, char *val, int line_num, int formt);
-
+void fun_calling(opFunc function, char *opcd,
+		char *val, int line_num, int formt);
+void push_to_stack(stack_t **stack, unsigned int line_number);
+void pall_stack(stack_t **stack, unsigned int line_number);
+void pint_stack(stack_t **stack, unsigned int line_number);
+void pop_stack(stack_t **stack, unsigned int line_number);
+void swap_stack(stack_t **stack, unsigned int line_number);
+void add_stack(stack_t **stack, unsigned int line_number);
+void nop_stack(stack_t **stack, unsigned int line_number);
+int main(int argc, char **argv);
 /* Nodes Functions */
 void freeing_nodes(void);
 stack_t *creating_nd(int n);
+
+/*Error exit functions */
+void exit_error(stack_t **stack);
 
 #endif
