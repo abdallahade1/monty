@@ -7,7 +7,7 @@
  */
 void opn_fl(char *fl_nam)
 {
-	FILE *fl_des = open(fl_nam, "r");
+	FILE *fl_des = fopen(fl_nam, "r");
 
 	if (!fl_nam || !fl_des)
 	{
@@ -16,7 +16,7 @@ void opn_fl(char *fl_nam)
 		exit(EXIT_FAILURE);
 	}
 	rd_fil(fl_des);
-	close(fl_des);
+	fclose(fl_des);
 }
 
 /**
@@ -26,12 +26,16 @@ void opn_fl(char *fl_nam)
  */
 void rd_fil(FILE *fl_des)
 {
-	int line_num, formt = 0;
+	int line_num = 1;
 	char *buff = NULL;
 	size_t length = 0;
 
-	for (line_num = 1; getline(&buff, &length, fl_des) != -1; line_num++)
-		formt = line_parsing(buff, line_num, formt);
+	while (getline(&buff, &length, fl_des) != -1)
+	{
+		line_parsing(buff, line_num, 0);
+		line_num++;
+	}
+
 	free(buff);
 }
 
@@ -58,7 +62,7 @@ int line_parsing(char *buff, int line_num, int formt)
 		return (formt);
 	val = strtok(NULL, delimiter);
 
-	fnd_func(opcd, val, line_num, formt);
+	fnd_fun(opcd, val, line_num, formt);
 	return (formt);
 }
 
@@ -84,7 +88,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
 		{NULL, NULL}
 	};
 
-	if (opcd[o] == '#')
+	if (opcd[0] == '#')
 		return;
 
 	for (flg = 1, j = 0; stack_funcs[j].opcode != NULL; j++)
@@ -113,8 +117,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
  * @formt: storage
  * Return: void
  */
-void fun_calling(opFunc function, char *opcd, char *val, int line_num,
-		int formt)
+void fun_calling(opFunc function, char *opcd, char *val, int line_num)
 {
 	stack_t *nd;
 	int j, flg;
@@ -122,7 +125,7 @@ void fun_calling(opFunc function, char *opcd, char *val, int line_num,
 	flg = 1;
 	if (strcmp(opcd, "push") == 0)
 	{
-		if (val != NULL && val[0] = '-')
+		if (val != NULL && val[0] == '-')
 		{
 			val += 1;
 			flg = -1;

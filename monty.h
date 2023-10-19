@@ -44,8 +44,7 @@ void opn_fl(char *fl_nam);
 void rd_fil(FILE *fl_des);
 int line_parsing(char *buff, int line_num, int formt);
 void fnd_fun(char *opcd, char *val, int line_num, int formt);
-void fun_calling(opFunc function, char *opcd,
-		char *val, int line_num, int formt);
+void fun_calling(opFunc function, char *opcd,char *val, int line_num);
 void push_to_stack(stack_t **stack, unsigned int line_number);
 void pall_stack(stack_t **stack, unsigned int line_number);
 void pint_stack(stack_t **stack, unsigned int line_number);
