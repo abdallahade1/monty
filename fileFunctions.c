@@ -64,7 +64,7 @@ int line_parsing(char *buff, int line_num, int formt)
 
 /**
  * fnd_fun - match func with opcode
- * @val: argument 
+ * @val: argument
  * @formt: storage
  * @line_num: line No.
  * Return: void
@@ -113,7 +113,8 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
  * @formt: storage
  * Return: void
  */
-void fun_calling(opFunc function, char *opcd, char *val, int line_num, int formt)
+void fun_calling(opFunc function, char *opcd, char *val, int line_num,
+		int formt)
 {
 	stack_t *nd;
 	int j, flg;
