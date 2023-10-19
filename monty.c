@@ -3,11 +3,11 @@
 /**
  * main - driver function for monty program
  * @argc: int num of arguments
- * @argv: opcode file
+ * @av: opcode file
  * Return: 0
  */
 
-int main(int argc, char **argv)
+int main(int argc, char **av)
 {
 	stack_t *stack;
 
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	rd_fil(argv[1], &stack);
+	opn_fl(av[1]);
 	free_stack(stack);
 	return (0);
 }
