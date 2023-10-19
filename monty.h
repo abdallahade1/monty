@@ -54,6 +54,7 @@ void swap_stack(stack_t **stack, unsigned int line_number);
 void add_stack(stack_t **stack, unsigned int line_number);
 void nop_stack(stack_t **stack, unsigned int line_number);
 int main(int argc, char **argv);
+void free_stack(stack_t *head);
 /* Nodes Functions */
 void freeing_nodes(void);
 stack_t *creating_nd(int n);
