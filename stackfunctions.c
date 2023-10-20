@@ -5,12 +5,24 @@
  * @stack: linked lists for monty stack
  * @line_number: number of line opcode occurs on
  */
-void push_to_stack(stack_t **stack,
+void push_to_stack(stack_t **new_nd,
 		__attribute__ ((unused))unsigned int line_number)
 {
-	stack_t *new_node;
+	stack_t *temp;
 
-
+	if (new_nd == NULL || *new_nd == NULL)
+		exit(EXIT_FAILURE);
+	if (hd == NULL)
+	{
+		hd = *new_nd;
+		return;
+	}
+	temp = hd;
+	hd = *new_nd;
+	hd->next = temp;
+	temp->prev = hd;
+}
+/*
 
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
@@ -19,7 +31,7 @@ void push_to_stack(stack_t **stack,
 		exit_error(stack);
 	}
 	
-}
+*/
 
 /**
  * pall_stack - print all function
@@ -72,7 +84,7 @@ void pop_stack(stack_t **stack, unsigned int line_number)
 	stack_t *itr;
 
 
-	if (*stack == NULL)
+	if (stack == NULL || *stack == NULL)
 	{
 		printf("L%d: can't pop an empty stack\n", line_number);
 		exit_error(stack);
@@ -95,18 +107,26 @@ void pop_stack(stack_t **stack, unsigned int line_number)
 void swap_stack(stack_t **stack, unsigned int line_number)
 {
 	stack_t *itr;
-	int tmp;
+	
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		printf("L%d: can't swap, stack too short\n", line_number);
 		exit_error(stack);
 	}
 
-	itr = *stack;
-
+	itr = (*stack)->next;
+	(*stack)->next = itr->next;
+	if (itr->next != NULL)
+		itr->next->prev = *stack;
+	itr->next = *stack;
+	(*stack)->prev = itr;
+	itr->prev = NULL;
+	*stack = itr;
+}
+/*
 
 	tmp = itr->n;
 	itr->n = itr->next->n;
 	itr->next->n = tmp;
-}
+}*/
 

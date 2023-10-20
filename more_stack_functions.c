@@ -9,13 +9,18 @@
 
 void add_stack(stack_t **stack, unsigned int line_number)
 {
+	int summ;
+
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		printf("L%d: can't add, stack too short\n", line_number);
 		exit_error(stack);
 	}
-	(*stack)->next->n += (*stack)->n;
-	pop_stack(stack, line_number);
+	(*stack) = (*stack)->next;
+	summ = (*stack)->n + (*stack)->prev->n;
+	(*stack)->n = summ;
+	free((*stack)->prev);
+	(*stack)->prev = NULL;
 }
 
 /**

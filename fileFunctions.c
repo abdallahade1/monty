@@ -12,7 +12,7 @@ void opn_fl(char *fl_nam)
 	if (!fl_nam || !fl_des)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", fl_nam);
-		freeing_nodes();
+		free_stack();
 		exit(EXIT_FAILURE);
 	}
 	rd_fil(fl_des);
@@ -32,7 +32,7 @@ void rd_fil(FILE *fl_des)
 
 	while (getline(&buff, &length, fl_des) != -1)
 	{
-		line_parsing(buff, line_num, 0);
+		line_parsing(buff, line_num);
 		line_num++;
 	}
 
@@ -46,7 +46,7 @@ void rd_fil(FILE *fl_des)
  * @formt: storage
  * Return: format
  */
-int line_parsing(char *buff, int line_num, int formt)
+int line_parsing(char *buff, int line_num)
 {
 	char *opcd, *val;
 	const char *delimiter = "\n ";
@@ -54,16 +54,16 @@ int line_parsing(char *buff, int line_num, int formt)
 	if (buff == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		freeing_nodes();
+		free_stack();
 		exit(EXIT_FAILURE);
 	}
 	opcd = strtok(buff, delimiter);
 	if (opcd == NULL)
-		return (formt);
+		return (0);
 	val = strtok(NULL, delimiter);
 
-	fnd_fun(opcd, val, line_num, formt);
-	return (formt);
+	fnd_fun(opcd, val, line_num);
+	return (0);
 }
 
 /**
@@ -73,7 +73,7 @@ int line_parsing(char *buff, int line_num, int formt)
  * @line_num: line No.
  * Return: void
  */
-void fnd_fun(char *opcd, char *val, int line_num, int formt)
+void fnd_fun(char *opcd, char *val, int line_num)
 {
 	int j, flg;
 
@@ -95,7 +95,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
 	{
 		if (strcmp(opcd, stack_funcs[j].opcode) == 0)
 		{
-			fun_calling(stack_funcs[j].f, opcd, val, line_num, formt);
+			fun_calling(stack_funcs[j].f, opcd, val, line_num);
 			flg = 0;
 		}
 	}
@@ -103,7 +103,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
 	if (flg == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcd);
-		freeing_nodes();
+		free_stack();
 		exit(EXIT_FAILURE);
 	}
 }
@@ -119,7 +119,7 @@ void fnd_fun(char *opcd, char *val, int line_num, int formt)
  */
 void fun_calling(opFunc function, char *opcd, char *val, int line_num)
 {
-	stack_t *nd;
+	stack_t *new_nd;
 	int j, flg;
 
 	flg = 1;
@@ -133,7 +133,7 @@ void fun_calling(opFunc function, char *opcd, char *val, int line_num)
 		if (val == NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_num);
-			freeing_nodes();
+			free_stack();
 			exit(EXIT_FAILURE);
 		}
 		for (j = 0; val[j] != '\0'; j++)
@@ -141,12 +141,12 @@ void fun_calling(opFunc function, char *opcd, char *val, int line_num)
 			if (isdigit(val[j]) == 0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_num);
-				freeing_nodes();
+				free_stack();
 				exit(EXIT_FAILURE);
 			}
 		}
-		nd = creating_nd(atoi(val) * flg);
-		function(&nd, line_num);
+		new_nd = creating_nd(atoi(val) * flg);
+		function(&new_nd, line_num);
 	}
 	else
 		function(&hd, line_num);
