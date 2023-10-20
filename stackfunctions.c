@@ -1,5 +1,4 @@
 #include "monty.h"
-stack_t *hd;
 
 /**
  * push_to_stack - push int to a stack
