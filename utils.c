@@ -38,10 +38,10 @@ void free_stack(void)
 
 /**
  * exit_error - frees the stack and exits due to erro
- * @stack: pointer to the head of the stack
+ * Return: void
  *
  */
-void exit_error()
+void exit_error(void)
 {
 	free_stack();
 	exit(EXIT_FAILURE);
