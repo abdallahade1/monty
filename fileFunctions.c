@@ -2,7 +2,7 @@
 
 /**
  * opn_fl - opens files
- * @fl_name: path of file
+ * @fl_nam: path of file
  * Return: void
  */
 void opn_fl(char *fl_nam)
@@ -42,8 +42,7 @@ void rd_fil(FILE *fl_des)
 /**
  * line_parsing - separates line into tokens based on delim
  * @buff: fil line
- * @lin_num: line No.
- * @formt: storage
+ * @line_num: line No.
  * Return: format
  */
 int line_parsing(char *buff, int line_num)
@@ -68,8 +67,8 @@ int line_parsing(char *buff, int line_num)
 
 /**
  * fnd_fun - match func with opcode
+ * @opcd: operation codes
  * @val: argument
- * @formt: storage
  * @line_num: line No.
  * Return: void
  */
@@ -114,7 +113,6 @@ void fnd_fun(char *opcd, char *val, int line_num)
  * @opcd: opcode from files
  * @val: argument
  * @line_num: line No.
- * @formt: storage
  * Return: void
  */
 void fun_calling(opFunc function, char *opcd, char *val, int line_num)

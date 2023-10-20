@@ -57,10 +57,8 @@ void pop_stack(stack_t **stack, unsigned int line_number);
 void swap_stack(stack_t **stack, unsigned int line_number);
 void add_stack(stack_t **stack, unsigned int line_number);
 void nop_stack(stack_t **stack, unsigned int line_number);
-/*
- * int main(int argc, char **argv);
 
-* Nodes Functions */
+/* Nodes Functions */
 void free_stack(void);
 stack_t *creating_nd(int n);
 

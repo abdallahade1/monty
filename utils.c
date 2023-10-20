@@ -23,19 +23,18 @@ stack_t *creating_nd(int n)
 
 /**
  * free_stack - free a list
- * @head: pointer to first node
- *
+ * Return: void
  */
 void free_stack(void)
 {
-        stack_t *tmp;
+	stack_t *tmp;
 
-        while (hd != NULL)
-        {
-                tmp = hd;
+	while (hd != NULL)
+	{
+		tmp = hd;
 		hd = hd->next;
-                free(tmp);
-        }
+		free(tmp);
+	}
 }
 
 /**
