@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *hd;
 
 /**
  * creating_nd - create new node

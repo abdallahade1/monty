@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *hd;
 
 /**
  * opn_fl - opens files

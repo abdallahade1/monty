@@ -39,7 +39,9 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-extern stack_t *hd;
+/* 
+ * extern stack_t *hd;
+ * */
 typedef void (*opFunc)(stack_t **, unsigned int);
 
 /* FILES Functions*/

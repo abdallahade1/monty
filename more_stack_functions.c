@@ -1,5 +1,5 @@
 #include "monty.h"
-
+stack_t *hd;
 /**
  * add_stack - adds top of stack and second top of stack
  *
