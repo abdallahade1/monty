@@ -56,12 +56,12 @@ void pint_stack(stack_t **stack, unsigned int line_number)
 
 	itr = *stack;
 
-	if (itr != NULL)
+	if (stack == NULL || itr == NULL)
 	{
-		printf("%d\n", itr->n);
+		printf("L%d: can't pint, stack empty\n", line_number);
+		exit_error();
 	}
-	printf("L%d: can't pint, stack empty\n", line_number);
-	exit_error(stack);
+	printf("%d\n", itr->n);
 }
 
 /**
@@ -77,7 +77,7 @@ void pop_stack(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL)
 	{
 		printf("L%d: can't pop an empty stack\n", line_number);
-		exit_error(stack);
+		exit_error();
 	}
 
 	itr = *stack;
@@ -102,7 +102,7 @@ void swap_stack(stack_t **stack, unsigned int line_number)
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
 		printf("L%d: can't swap, stack too short\n", line_number);
-		exit_error(stack);
+		exit_error();
 	}
 
 	itr = (*stack)->next;

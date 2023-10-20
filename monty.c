@@ -17,7 +17,7 @@ int main(int argc, char **av)
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		exit_error();
 	}
 	opn_fl(av[1]);
 	free_stack();

@@ -63,6 +63,6 @@ void free_stack(void);
 stack_t *creating_nd(int n);
 
 /*Error exit functions */
-void exit_error(stack_t **stack);
+void exit_error();
 
 #endif

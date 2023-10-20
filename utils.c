@@ -12,8 +12,7 @@ stack_t *creating_nd(int n)
 	if (!nd)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_stack();
-		exit(EXIT_FAILURE);
+		exit_error();
 	}
 	nd->next = NULL;
 	nd->prev = NULL;
@@ -42,9 +41,8 @@ void free_stack(void)
  * @stack: pointer to the head of the stack
  *
  */
-void exit_error(stack_t **stack)
+void exit_error()
 {
-	if (*stack)
-		free_stack();
+	free_stack();
 	exit(EXIT_FAILURE);
 }

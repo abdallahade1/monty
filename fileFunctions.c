@@ -12,8 +12,7 @@ void opn_fl(char *fl_nam)
 	if (!fl_nam || !fl_des)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", fl_nam);
-		free_stack();
-		exit(EXIT_FAILURE);
+		exit_error();
 	}
 	rd_fil(fl_des);
 	fclose(fl_des);
@@ -53,8 +52,7 @@ int line_parsing(char *buff, int line_num)
 	if (buff == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_stack();
-		exit(EXIT_FAILURE);
+		exit_error();
 	}
 	opcd = strtok(buff, delimiter);
 	if (opcd == NULL)
@@ -102,8 +100,7 @@ void fnd_fun(char *opcd, char *val, int line_num)
 	if (flg == 1)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opcd);
-		free_stack();
-		exit(EXIT_FAILURE);
+		exit_error();
 	}
 }
 
@@ -131,16 +128,14 @@ void fun_calling(opFunc function, char *opcd, char *val, int line_num)
 		if (val == NULL)
 		{
 			fprintf(stderr, "L%d: usage: push integer\n", line_num);
-			free_stack();
-			exit(EXIT_FAILURE);
+			exit_error();
 		}
 		for (j = 0; val[j] != '\0'; j++)
 		{
 			if (isdigit(val[j]) == 0)
 			{
 				fprintf(stderr, "L%d: usage: push integer\n", line_num);
-				free_stack();
-				exit(EXIT_FAILURE);
+				exit_error();
 			}
 		}
 		new_nd = creating_nd(atoi(val) * flg);
