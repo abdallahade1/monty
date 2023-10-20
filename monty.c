@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *hd = NULL;
 
 /**
  * main - driver function for monty program
