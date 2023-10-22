@@ -10,10 +10,6 @@ stack_t *hd = NULL;
 
 int main(int argc, char **av)
 {
-	/*
-	 * stack_t *stack;
-	 * stack = NULL;
-	 */
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
