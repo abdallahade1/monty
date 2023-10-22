@@ -4,7 +4,7 @@
  * add_stack - adds top of stack and second top of stack
  *
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  */
 
 void add_stack(stack_t **stack, unsigned int line_num)
