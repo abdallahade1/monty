@@ -3,10 +3,10 @@
 /**
  * push_to_stack - push int to a stack
  * @new_nd: linked lists for monty stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  */
 void push_to_stack(stack_t **new_nd,
-		__attribute__ ((unused))unsigned int line_number)
+		__attribute__ ((unused))unsigned int line_num)
 {
 	stack_t *temp;
 
@@ -26,10 +26,10 @@ void push_to_stack(stack_t **new_nd,
 /**
  * pall_stack - print all function
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  */
 void pall_stack(stack_t **stack,
-		__attribute__ ((unused))unsigned int line_number)
+		__attribute__ ((unused))unsigned int line_num)
 {
 	stack_t *itr;
 
@@ -47,10 +47,10 @@ void pall_stack(stack_t **stack,
 /**
  * pint_stack - print int a top of stack
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  *
  */
-void pint_stack(stack_t **stack, unsigned int line_number)
+void pint_stack(stack_t **stack, unsigned int line_num)
 {
 	stack_t *itr;
 
@@ -58,7 +58,7 @@ void pint_stack(stack_t **stack, unsigned int line_number)
 
 	if (stack == NULL || itr == NULL)
 	{
-		printf("L%d: can't pint, stack empty\n", line_number);
+		printf("L%d: can't pint, stack empty\n", line_num);
 		exit_error();
 	}
 	printf("%d\n", itr->n);
@@ -67,16 +67,16 @@ void pint_stack(stack_t **stack, unsigned int line_number)
 /**
  * pop_stack - delete item at top of stack
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  */
-void pop_stack(stack_t **stack, unsigned int line_number)
+void pop_stack(stack_t **stack, unsigned int line_num)
 {
 	stack_t *itr;
 
 
 	if (stack == NULL || *stack == NULL)
 	{
-		printf("L%d: can't pop an empty stack\n", line_number);
+		printf("L%d: can't pop an empty stack\n", line_num);
 		exit_error();
 	}
 
@@ -92,16 +92,16 @@ void pop_stack(stack_t **stack, unsigned int line_number)
 /**
  * swap_stack - swap top of stack and second top of stack
  * @stack: pointer to linked list stack
- * @line_number: number of line opcode occurs on
+ * @line_num: number of line opcode occurs on
  *
  */
-void swap_stack(stack_t **stack, unsigned int line_number)
+void swap_stack(stack_t **stack, unsigned int line_num)
 {
 	stack_t *itr;
 
 	if (stack == NULL || *stack == NULL || (*stack)->next == NULL)
 	{
-		printf("L%d: can't swap, stack too short\n", line_number);
+		printf("L%d: can't swap, stack too short\n", line_num);
 		exit_error();
 	}
 
